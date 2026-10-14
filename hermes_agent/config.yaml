@@ -1,0 +1,41 @@
+name: Hermes Agent
+version: "0.1.0"
+slug: hermes_agent
+description: Self-improving AI agent by Nous Research with Git and persistent workspaces
+url: https://github.com/amiralbert/Amirs-HA-Apps/tree/main/hermes_agent
+image: ghcr.io/amiralbert/hermes-agent
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: application
+boot: auto
+ports:
+  9119/tcp: 9119
+ports_description:
+  9119/tcp: Hermes Dashboard
+webui: "http://[HOST]:[PORT:9119]"
+map:
+  - type: share
+    read_only: false
+  - type: homeassistant_config
+    read_only: true
+options:
+  start_mode: both
+  llm_base_url: ""
+  llm_api_key: ""
+  openrouter_api_key: ""
+  git_username: ""
+  git_email: ""
+  git_token: ""
+  workspaces: []
+schema:
+  start_mode: list(dashboard|gateway|both)
+  llm_base_url: str?
+  llm_api_key: password?
+  openrouter_api_key: password?
+  git_username: str?
+  git_email: email?
+  git_token: password?
+  workspaces:
+    - str

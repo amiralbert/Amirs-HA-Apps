@@ -1,0 +1,17 @@
+configuration:
+  encryption_key:
+    name: Verschlüsselungsschlüssel
+    description: >-
+      64 Hex-Zeichen zum Verschlüsseln der gespeicherten Provider-Keys. Leer
+      lassen, um automatisch einen zu erzeugen und dauerhaft zu speichern.
+  response_cache:
+    name: Antwort-Cache
+    description: Identische Nicht-Streaming-Anfragen aus dem Speicher beantworten.
+  compression:
+    name: Prompt-Komprimierung
+    description: Modus der anfrageseitigen Prompt-Komprimierung.
+  dashboard_origins:
+    name: Dashboard-Origins
+    description: Kommagetrennte zusätzliche Browser-Origins, die die API aufrufen dürfen.
+network:
+  3001/tcp: Dashboard und OpenAI-kompatible API (/v1)

@@ -1,0 +1,17 @@
+configuration:
+  encryption_key:
+    name: Encryption key
+    description: >-
+      64 hex characters used to encrypt stored provider keys. Leave empty to
+      generate and persist one automatically.
+  response_cache:
+    name: Response cache
+    description: Serve identical non-streaming requests from memory.
+  compression:
+    name: Prompt compression
+    description: Request-side prompt compression mode.
+  dashboard_origins:
+    name: Dashboard origins
+    description: Comma-separated extra browser origins allowed to call the API.
+network:
+  3001/tcp: Dashboard and OpenAI-compatible API (/v1)

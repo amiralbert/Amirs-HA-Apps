@@ -1,0 +1,97 @@
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+# ==============================================================================
+# Home Assistant App: GitHub Sync
+# Periodically pulls (and optionally commits and pushes) configured repositories
+# ==============================================================================
+declare git_user
+declare git_email
+declare token
+declare interval
+
+git_user="$(bashio::config 'git_username')"
+git_email="$(bashio::config 'git_email')"
+interval="$(bashio::config 'sync_interval')"
+
+git config --global --add safe.directory '*'
+git config --global pull.rebase true
+
+if bashio::config.has_value 'git_username'; then
+    git config --global user.name "${git_user}"
+fi
+if bashio::config.has_value 'git_email'; then
+    git config --global user.email "${git_email}"
+fi
+
+if bashio::config.has_value 'github_token'; then
+    token="$(bashio::config 'github_token')"
+    git config --global credential.helper store
+    echo "https://${git_user:-x-access-token}:${token}@github.com" > "${HOME}/.git-credentials"
+    chmod 600 "${HOME}/.git-credentials"
+    export GH_TOKEN="${token}"
+else
+    bashio::log.warning "No GitHub token configured: only public repositories can be cloned."
+fi
+
+# Sync one repository.
+# Arguments: url, path (relative to /share), branch (may be empty), push (true/false)
+sync_repo() {
+    local url="${1}"
+    local path="${2}"
+    local branch="${3}"
+    local push="${4}"
+    local target="/share/${path}"
+
+    if [[ "${path}" == /* || "${path}" == *..* || -z "${path}" ]]; then
+        bashio::log.error "Invalid path '${path}' (must be relative to /share, without '..')"
+        return 1
+    fi
+
+    if [[ ! -d "${target}/.git" ]]; then
+        bashio::log.info "Cloning ${url} to ${target}"
+        mkdir -p "$(dirname "${target}")"
+        if [[ -n "${branch}" ]]; then
+            git clone --branch "${branch}" "${url}" "${target}" || return 1
+        else
+            git clone "${url}" "${target}" || return 1
+        fi
+        return 0
+    fi
+
+    if [[ "${push}" == "true" ]] && [[ -n "$(git -C "${target}" status --porcelain)" ]]; then
+        bashio::log.info "Committing local changes in ${target}"
+        git -C "${target}" add -A
+        git -C "${target}" commit -m "Auto-commit from Home Assistant ($(date -u +%Y-%m-%dT%H:%M:%SZ))" || return 1
+    fi
+
+    bashio::log.info "Pulling ${target}"
+    git -C "${target}" pull --rebase --autostash || return 1
+
+    if [[ "${push}" == "true" ]]; then
+        bashio::log.info "Pushing ${target}"
+        git -C "${target}" push || return 1
+    fi
+}
+
+while true; do
+    count="$(bashio::config 'repositories|length')"
+
+    if [[ "${count}" -eq 0 ]]; then
+        bashio::log.info "No repositories configured; nothing to sync."
+    fi
+
+    for (( i = 0; i < count; i++ )); do
+        url="$(bashio::config "repositories[${i}].url")"
+        path="$(bashio::config "repositories[${i}].path")"
+        branch="$(bashio::config "repositories[${i}].branch")"
+        push="$(bashio::config "repositories[${i}].push")"
+        [[ "${branch}" == "null" ]] && branch=""
+        [[ "${push}" == "null" ]] && push="false"
+
+        sync_repo "${url}" "${path}" "${branch}" "${push}" \
+            || bashio::log.warning "Sync failed for ${url}"
+    done
+
+    bashio::log.info "Next sync in ${interval} minute(s)."
+    sleep "$(( interval * 60 ))"
+done

@@ -1,0 +1,16 @@
+configuration:
+  github_token:
+    name: GitHub-Token
+    description: Personal Access Token für HTTPS-Zugriff auf github.com.
+  git_username:
+    name: Git-Benutzername
+    description: GitHub-Benutzername, wird auch für Commits verwendet.
+  git_email:
+    name: Git-E-Mail
+    description: E-Mail-Adresse für Commits.
+  sync_interval:
+    name: Sync-Intervall
+    description: Minuten zwischen den Synchronisationsläufen.
+  repositories:
+    name: Repositories
+    description: Zu synchronisierende Repositories (Pfad relativ zu /share).

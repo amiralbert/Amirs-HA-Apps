@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build app locally: freellmapi",
+      "type": "shell",
+      "command": "docker build -t local-freellmapi ./freellmapi",
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "new" }
+    },
+    {
+      "label": "Build app locally: hermes_agent",
+      "type": "shell",
+      "command": "docker build -t local-hermes-agent ./hermes_agent",
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "new" }
+    },
+    {
+      "label": "Build app locally: obsidian",
+      "type": "shell",
+      "command": "docker build -t local-obsidian ./obsidian",
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "new" }
+    },
+    {
+      "label": "Build app locally: github",
+      "type": "shell",
+      "command": "docker build -t local-github-sync ./github",
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "new" }
+    }
+  ]
+}

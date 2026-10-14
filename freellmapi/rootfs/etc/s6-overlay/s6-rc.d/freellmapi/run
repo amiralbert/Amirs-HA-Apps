@@ -1,0 +1,44 @@
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+# ==============================================================================
+# Home Assistant App: FreeLLMAPI
+# Runs the FreeLLMAPI gateway
+# ==============================================================================
+declare key_file="/data/.encryption-key"
+
+export NODE_ENV=production
+export PORT=3001
+export HOST="0.0.0.0"
+export FREEAPI_DB_PATH="/data/freellmapi.db"
+
+# The encryption key protects the stored provider API keys. In production mode
+# FreeLLMAPI requires one, so use the configured key or generate a persistent one.
+if bashio::config.has_value 'encryption_key'; then
+    ENCRYPTION_KEY="$(bashio::config 'encryption_key')"
+else
+    if ! bashio::fs.file_exists "${key_file}"; then
+        bashio::log.info "Generating a new encryption key..."
+        node -e "console.log(require('crypto').randomBytes(32).toString('hex'))" > "${key_file}"
+        chmod 600 "${key_file}"
+    fi
+    ENCRYPTION_KEY="$(< "${key_file}")"
+fi
+export ENCRYPTION_KEY
+
+if bashio::config.true 'response_cache'; then
+    export RESPONSE_CACHE=true
+fi
+
+FREELLMAPI_COMPRESSION="$(bashio::config 'compression')"
+export FREELLMAPI_COMPRESSION
+
+if bashio::config.has_value 'dashboard_origins'; then
+    DASHBOARD_ORIGINS="$(bashio::config 'dashboard_origins')"
+    export DASHBOARD_ORIGINS
+fi
+
+bashio::log.info "Starting FreeLLMAPI on port ${PORT}..."
+bashio::log.info "First start: the one-time setup code is printed below."
+
+cd /app || bashio::exit.nok "Application directory /app not found"
+exec node server/dist/index.js

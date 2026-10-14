@@ -1,0 +1,27 @@
+configuration:
+  start_mode:
+    name: Start mode
+    description: Run the dashboard, the gateway, or both.
+  llm_base_url:
+    name: LLM base URL
+    description: Optional OpenAI-compatible endpoint, e.g. the FreeLLMAPI app.
+  llm_api_key:
+    name: LLM API key
+    description: API key for the endpoint above.
+  openrouter_api_key:
+    name: OpenRouter API key
+    description: Optional OpenRouter key.
+  git_username:
+    name: Git username
+    description: Used for the global Git identity and GitHub authentication.
+  git_email:
+    name: Git email
+    description: Email for the global Git identity.
+  git_token:
+    name: Git token
+    description: Personal access token for HTTPS access to GitHub.
+  workspaces:
+    name: Workspaces
+    description: Folders to create under /share/hermes.
+network:
+  9119/tcp: Hermes Dashboard
