@@ -20,6 +20,8 @@ START_MODE="${START_MODE:-both}"
 LLM_BASE_URL="$(opt llm_base_url)"
 LLM_API_KEY="$(opt llm_api_key)"
 OPENROUTER_KEY="$(opt openrouter_api_key)"
+DASHBOARD_USERNAME="$(opt dashboard_username)"
+DASHBOARD_PASSWORD="$(opt dashboard_password)"
 GIT_USER="$(opt git_username)"
 GIT_EMAIL="$(opt git_email)"
 GIT_TOKEN="$(opt git_token)"
@@ -30,6 +32,16 @@ mkdir -p "${HERMES_HOME}"
 # Run as root inside the container so /data is writable
 export HERMES_UID=0
 export HERMES_GID=0
+
+# --- Dashboard authentication -----------------------------------------------
+if [[ "${START_MODE}" != "gateway" ]]; then
+    if [[ -z "${DASHBOARD_PASSWORD}" ]]; then
+        log "ERROR: Set dashboard_password before starting dashboard or both mode."
+        exit 1
+    fi
+    export HERMES_DASHBOARD_BASIC_AUTH_USERNAME="${DASHBOARD_USERNAME:-hermes}"
+    export HERMES_DASHBOARD_BASIC_AUTH_PASSWORD="${DASHBOARD_PASSWORD}"
+fi
 
 # --- Workspaces (shared via /share/hermes) -----------------------------------
 WS_BASE="/share/hermes"
@@ -74,7 +86,7 @@ fi
 # --- Start mode --------------------------------------------------------------
 case "${START_MODE}" in
     dashboard)
-        args=(dashboard --host 0.0.0.0 --insecure --no-open)
+        args=(dashboard --host 0.0.0.0 --no-open)
         ;;
     gateway)
         args=(gateway run)

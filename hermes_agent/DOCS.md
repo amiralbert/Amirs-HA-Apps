@@ -10,6 +10,8 @@
 
 ```yaml
 start_mode: both
+dashboard_username: hermes
+dashboard_password: ""
 llm_base_url: ""
 llm_api_key: ""
 openrouter_api_key: ""
@@ -24,6 +26,13 @@ workspaces: []
 - `dashboard`: only the web dashboard.
 - `gateway`: only the messaging gateway.
 - `both`: gateway plus dashboard.
+
+### Options: `dashboard_username` and `dashboard_password`
+
+Set a dashboard username and password before starting in `dashboard` or `both`
+mode. The bundled Hermes password provider protects the dashboard; unauthenticated
+public dashboard access is not supported. `gateway` mode does not require these
+options.
 
 ### Options: `llm_base_url` and `llm_api_key`
 
@@ -51,9 +60,11 @@ Folder names created under `/share/hermes` (also reachable as
 
 ## Security notes
 
-- The Hermes dashboard exposes API keys and session data and has no
-  Home Assistant authentication. Keep port `9119` inside a trusted network or
-  disable the host port in the app's **Network** section.
+- The Hermes dashboard exposes API keys and session data and does not use
+  Home Assistant authentication. It is protected by the configured Hermes
+  dashboard credentials. Keep port `9119` inside a trusted network, use a TLS
+  reverse proxy for remote access, or disable the host port in the app's
+  **Network** section.
 - The Home Assistant configuration folder is mounted **read-only** at
   `/homeassistant`; `/share` is writable.
 
