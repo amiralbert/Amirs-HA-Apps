@@ -19,7 +19,7 @@ jobs:
       build_matrix: ${{ steps.matrix.outputs.matrix }}
       image_name: ${{ steps.normalize.outputs.image_name }}
       registry_prefix: ${{ steps.normalize.outputs.registry_prefix }}
-      version: ${{ steps.info.outputs.version }}
+      version: ${{ steps.normalize.outputs.version }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v7.0.1
@@ -33,14 +33,20 @@ jobs:
       - name: Normalize image name
         id: normalize
         env:
-          APP_IMAGE: ${{ steps.info.outputs.image }}
+          APP_IMAGE: ${{ fromJSON(steps.info.outputs.image) }}
+          APP_VERSION: ${{ fromJSON(steps.info.outputs.version) }}
         run: |
-          if [[ "${APP_IMAGE}" != */* ]]; then
+          if [[ "${APP_IMAGE}" != */* || "${APP_IMAGE}" == *\"* ]]; then
             echo "Invalid app image: ${APP_IMAGE}" >&2
+            exit 1
+          fi
+          if [[ ! "${APP_VERSION}" =~ ^[A-Za-z0-9._-]+$ ]]; then
+            echo "Invalid app version: ${APP_VERSION}" >&2
             exit 1
           fi
           echo "image_name=${APP_IMAGE##*/}" >> "$GITHUB_OUTPUT"
           echo "registry_prefix=${APP_IMAGE%/*}" >> "$GITHUB_OUTPUT"
+          echo "version=${APP_VERSION}" >> "$GITHUB_OUTPUT"
 
       - name: Prepare architecture matrix
         id: matrix
