@@ -20,7 +20,7 @@ ENTRYPOINT ["/run.sh"]
 CMD []
 
 LABEL \
-    io.hass.type="addon" \
+    io.hass.type="app" \
     org.opencontainers.image.title="Home Assistant App: Hermes Agent" \
     org.opencontainers.image.description="Hermes Agent by Nous Research with Git and persistent workspaces." \
     org.opencontainers.image.source="https://github.com/amiralbert/Amirs-HA-Apps" \

@@ -26,7 +26,7 @@ RUN chmod a+x /etc/s6-overlay/s6-rc.d/freellmapi/run /etc/s6-overlay/s6-rc.d/fre
 WORKDIR /app
 
 LABEL \
-    io.hass.type="addon" \
+    io.hass.type="app" \
     org.opencontainers.image.title="Home Assistant App: FreeLLMAPI" \
     org.opencontainers.image.description="Local OpenAI-compatible gateway that stacks the free tiers of many LLM providers." \
     org.opencontainers.image.source="https://github.com/amiralbert/Amirs-HA-Apps" \

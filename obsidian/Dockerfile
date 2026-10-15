@@ -14,7 +14,7 @@ COPY rootfs /
 RUN chmod a+x /custom-cont-init.d/*.sh
 
 LABEL \
-    io.hass.type="addon" \
+    io.hass.type="app" \
     org.opencontainers.image.title="Home Assistant App: Obsidian" \
     org.opencontainers.image.description="Obsidian desktop in your browser, vault stored in /share/obsidian." \
     org.opencontainers.image.source="https://github.com/amiralbert/Amirs-HA-Apps" \

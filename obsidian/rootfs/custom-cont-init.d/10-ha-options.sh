@@ -3,7 +3,7 @@
 # Home Assistant App: Obsidian
 # Maps app options to the LinuxServer.io environment and persists /config
 # ==============================================================================
-set -u
+set -euo pipefail
 
 OPTIONS_FILE="/data/options.json"
 ENV_DIR="/run/s6/container_environment"
@@ -25,11 +25,13 @@ fi
 # Persist the Obsidian configuration in /data (included in backups)
 mkdir -p /data/config
 if [[ ! -L /config ]]; then
-    cp -a /config/. /data/config/ 2>/dev/null || true
+    if [[ -d /config ]]; then
+        cp -a /config/. /data/config/
+    fi
     rm -rf /config
     ln -s /data/config /config
 fi
 
 # Vault folder shared with the other apps (e.g. GitHub Sync: path "obsidian")
 mkdir -p /share/obsidian
-chown -R abc:abc /share/obsidian /data/config 2>/dev/null || true
+chown -R abc:abc /share/obsidian /data/config

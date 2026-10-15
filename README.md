@@ -1,20 +1,18 @@
 # Amirs Home Assistant Apps
 
 Custom Home Assistant apps (formerly known as add-ons), structured after the
-[Home Assistant apps example](https://github.com/home-assistant/apps-example)
-and the community conventions popularised by
-[frenck's add-ons](https://github.com/hassio-addons).
+[Home Assistant apps example](https://github.com/home-assistant/apps-example).
 
-[![Open your Home Assistant instance and show the add app repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Famiralbert%2FAmirs-HA-Apps)
+[![Open this repository in the Home Assistant app store.](https://my.home-assistant.io/badges/supervisor_store.svg)](https://my.home-assistant.io/redirect/supervisor_store/?repository_url=https%3A%2F%2Fgithub.com%2Famiralbert%2FAmirs-HA-Apps)
 
 ## Apps
 
 | App | Description |
 | --- | --- |
-| [FreeLLMAPI](./freellmapi) | Local OpenAI-compatible gateway that stacks the free tiers of many LLM providers. |
-| [Hermes Agent](./hermes_agent) | Self-improving AI agent by Nous Research (gateway and/or dashboard) with Git and workspaces. |
-| [Obsidian](./obsidian) | Obsidian desktop in your browser, with the vault stored in `/share/obsidian` (experimental). |
-| [GitHub Sync](./github) | Keeps GitHub repositories in `/share` in sync (pull, optional auto-commit and push). |
+| [FreeLLMAPI](./freellmapi) | Local OpenAI-compatible gateway for multiple LLM providers. |
+| [Hermes Agent](./hermes_agent) | AI agent with dashboard, gateway, Git and persistent workspaces. |
+| [Obsidian](./obsidian) | Obsidian in your browser with a vault in `/share/obsidian` (experimental). |
+| [GitHub Sync](./github) | Synchronizes GitHub repositories in `/share`. |
 
 ## How the apps fit together
 
@@ -26,28 +24,25 @@ GitHub Sync ──► /share/obsidian  ◄── Obsidian (edit your vault)
                                    FreeLLMAPI
 ```
 
-All apps exchange files via the `/share` folder. Hermes Agent talks to
-FreeLLMAPI over HTTP (see the Hermes Agent documentation).
+All apps exchange files via `/share`. Hermes Agent can connect to FreeLLMAPI
+over HTTP; see the individual app documentation for details.
 
 ## Installation
 
-1. Click the button above to add this repository to your Home Assistant.
+1. Add this repository using the button above, or add
+   `https://github.com/amiralbert/Amirs-HA-Apps` from the App Store's
+   **Repositories** menu.
 2. Open **Settings** > **Apps** > **App Store** (older versions: **Add-ons**).
 3. Install the apps you want.
 
 ## Development
 
-- Every app lives in its own folder; the folder name equals the `slug`.
-- Images are built by GitHub Actions on every push to `main`
-  (`.github/workflows/builder.yaml`), for `aarch64` and `amd64`, and published
-  to `ghcr.io/amiralbert/<image>`.
-- Bump `version` in the app's `config.yaml` **and** add an entry to its
-  `CHANGELOG.md` for every release.
-- While developing locally, comment out the `image:` key in `config.yaml` so
-  the Supervisor builds the image on your device.
-- After the first successful build, set the packages on GitHub Container
-  Registry to **public**, and allow workflows write access
-  (Settings > Actions > General > Workflow permissions).
+- Every app lives in a directory whose name matches its `slug`.
+- Pull requests are linted and build all app images without publishing.
+- Pushes to `main` build multi-architecture (`aarch64` and `amd64`) images and
+  publish them to GitHub Container Registry using `.github/workflows/builder.yaml`.
+- Keep the `version` in `config.yaml` and the app's `CHANGELOG.md` in sync.
+- Published GHCR packages must be public for Home Assistant to pull the images.
 
 ## Support
 
