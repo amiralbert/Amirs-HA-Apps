@@ -63,6 +63,7 @@ Hermes state lives in `/data/hermes` and is included in backups.
 
 ## Notes
 
-The start script relies on the image's own entrypoint and on the dashboard
-options documented by Nous Research. If an upstream release changes them,
-adjust `rootfs/run.sh` and pin `HERMES_VERSION` in the Dockerfile.
+The start script passes the selected Hermes command to the image's
+`entrypoint-dispatch.sh` so s6-overlay can run its bootstrap and supervision
+services. If an upstream release changes this entrypoint or the dashboard
+options, adjust `rootfs/run.sh` and pin `HERMES_VERSION` in the Dockerfile.

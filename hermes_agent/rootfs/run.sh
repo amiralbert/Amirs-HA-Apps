@@ -89,8 +89,10 @@ esac
 
 log "Starting Hermes Agent (mode: ${START_MODE})..."
 
-ENTRYPOINT_SCRIPT="/opt/hermes/docker/entrypoint.sh"
-if [[ -x "${ENTRYPOINT_SCRIPT}" ]]; then
-    exec "${ENTRYPOINT_SCRIPT}" "${args[@]}"
+ENTRYPOINT_DISPATCH="/opt/hermes/docker/entrypoint-dispatch.sh"
+if [[ -x "${ENTRYPOINT_DISPATCH}" ]]; then
+    exec "${ENTRYPOINT_DISPATCH}" "${args[@]}"
 fi
-exec /opt/hermes/.venv/bin/hermes "${args[@]}"
+
+log "ERROR: Hermes image entrypoint dispatcher not found at ${ENTRYPOINT_DISPATCH}"
+exit 1
