@@ -6,7 +6,7 @@ FROM lscr.io/linuxserver/obsidian:${OBSIDIAN_VERSION}
 
 # hadolint ignore=DL3008
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends jq \
+    && apt-get install -y --no-install-recommends jq openssl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy root filesystem (custom-cont-init.d scripts run before the services)

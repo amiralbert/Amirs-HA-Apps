@@ -1,5 +1,5 @@
 name: Obsidian
-version: "0.1.5"
+version: "0.1.6"
 slug: obsidian
 stage: experimental
 description: Obsidian desktop in your browser, vault stored in /share/obsidian
@@ -15,9 +15,9 @@ ports:
   3000/tcp: 3010
   3001/tcp: 3011
 ports_description:
-  3000/tcp: Obsidian web UI (HTTP)
+  3000/tcp: Obsidian web UI (HTTP, for reverse proxies)
   3001/tcp: Obsidian web UI (HTTPS, self-signed)
-webui: "http://[HOST]:[PORT:3010]"
+webui: "https://[HOST]:[PORT:3011]"
 map:
   - type: share
     read_only: true

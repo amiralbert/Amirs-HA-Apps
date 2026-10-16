@@ -6,5 +6,5 @@ configuration:
     name: Password
     description: Basic-auth password for the web UI.
 network:
-  3000/tcp: Obsidian web UI (HTTP)
+  3000/tcp: Obsidian web UI (HTTP, for reverse proxies)
   3001/tcp: Obsidian web UI (HTTPS, self-signed)

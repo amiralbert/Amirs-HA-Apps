@@ -6,5 +6,5 @@ configuration:
     name: Passwort
     description: Basic-Auth-Passwort für die Weboberfläche.
 network:
-  3000/tcp: Obsidian-Weboberfläche (HTTP)
+  3000/tcp: Obsidian-Weboberfläche (HTTP, für Reverse-Proxys)
   3001/tcp: Obsidian-Weboberfläche (HTTPS, selbstsigniert)

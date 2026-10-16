@@ -35,3 +35,20 @@ fi
 # Vault folder shared with the other apps (e.g. GitHub Sync: path "obsidian")
 mkdir -p /share/obsidian
 chown -R abc:abc /share/obsidian /data/config
+
+# LinuxServer's nginx expects these files even when no custom certificate is set.
+SSL_DIR="/config/ssl"
+SSL_CERT="${SSL_DIR}/cert.pem"
+SSL_KEY="${SSL_DIR}/key.pem"
+if [[ ! -s "${SSL_CERT}" || ! -s "${SSL_KEY}" ]]; then
+    mkdir -p "${SSL_DIR}"
+    umask 077
+    openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
+        -keyout "${SSL_KEY}" \
+        -out "${SSL_CERT}" \
+        -subj "/CN=localhost"
+    chmod 600 "${SSL_KEY}"
+    chmod 644 "${SSL_CERT}"
+    chown abc:abc "${SSL_KEY}" "${SSL_CERT}"
+    echo "[obsidian-app] Generated a self-signed HTTPS certificate."
+fi
