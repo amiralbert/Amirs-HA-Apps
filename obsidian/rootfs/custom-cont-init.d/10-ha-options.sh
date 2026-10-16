@@ -35,6 +35,7 @@ fi
 # Vault folder shared with the other apps (e.g. GitHub Sync: path "obsidian")
 mkdir -p /share/obsidian
 chown -R abc:abc /share/obsidian /data/config
+chmod -R 777 /share/obsidian
 
 # LinuxServer's nginx expects these files even when no custom certificate is set.
 SSL_DIR="/config/ssl"

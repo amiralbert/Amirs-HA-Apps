@@ -1,5 +1,5 @@
 name: Obsidian
-version: "0.1.6"
+version: "0.1.7"
 slug: obsidian
 stage: experimental
 description: Obsidian desktop in your browser, vault stored in /share/obsidian
@@ -20,7 +20,7 @@ ports_description:
 webui: "https://[HOST]:[PORT:3011]"
 map:
   - type: share
-    read_only: true
+    read_only: false
 options:
   username: admin
   password: yaq1yse4YAQ!YSE$
