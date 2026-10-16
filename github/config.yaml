@@ -1,5 +1,5 @@
 name: GitHub Sync
-version: "0.1.0"
+version: "0.1.5"
 slug: github
 description: Keeps GitHub repositories in /share in sync (pull, optional auto-commit and push)
 url: https://github.com/amiralbert/Amirs-HA-Apps/tree/main/github

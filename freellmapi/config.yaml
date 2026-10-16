@@ -1,5 +1,5 @@
 name: FreeLLMAPI
-version: "0.1.0"
+version: "0.1.5"
 slug: freellmapi
 description: Local OpenAI-compatible gateway that stacks the free tiers of many LLM providers
 url: https://github.com/amiralbert/Amirs-HA-Apps/tree/main/freellmapi

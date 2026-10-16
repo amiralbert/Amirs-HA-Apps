@@ -1,5 +1,5 @@
 name: Hermes Agent
-version: "0.1.4"
+version: "0.1.5"
 slug: hermes_agent
 description: Self-improving AI agent by Nous Research with Git and persistent workspaces
 url: https://github.com/amiralbert/Amirs-HA-Apps/tree/main/hermes_agent
