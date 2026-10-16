@@ -5,10 +5,11 @@
 1. Install the app, set a username and password and start it. App configuration
    is stored in Home Assistant's persistent app configuration directory.
 2. Open the web UI over HTTPS (port `3011`). If Home Assistant has both
-   `/ssl/fullchain.pem` and `/ssl/privkey.pem`, the app uses them. Otherwise,
-   it creates a self-signed certificate, so the browser will show a certificate
-   warning until you trust it. HTTP on port `3010` is intended for use behind
-   a reverse proxy; browser features used by Obsidian require a secure context.
+   `/ssl/fullchain.pem` and `/ssl/privkey.pem` that match, the app uses them.
+   Otherwise, it creates a self-signed certificate, so the browser will show a
+   certificate warning until you trust it. HTTP on port `3010` is intended for
+   use behind a reverse proxy; browser features used by Obsidian require a
+   secure context.
 3. In Obsidian choose **Open folder as vault** and select `/share/obsidian`.
 
 ## Configuration

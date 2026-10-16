@@ -1,5 +1,5 @@
 name: Obsidian
-version: "0.1.8"
+version: "0.1.9"
 slug: obsidian
 stage: experimental
 description: Obsidian desktop in your browser, vault stored in /share/obsidian
