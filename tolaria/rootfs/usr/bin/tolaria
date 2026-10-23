@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Start Tolaria from the extracted AppImage
+exec /opt/tolaria/AppRun "$@"

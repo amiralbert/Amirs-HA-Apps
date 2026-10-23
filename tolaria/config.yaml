@@ -1,0 +1,29 @@
+name: Tolaria
+version: "0.1.0"
+slug: tolaria
+stage: experimental
+description: Tolaria Markdown knowledge base in your browser, vault stored in /share/tolaria
+url: https://github.com/amiralbert/Amirs-HA-Apps/tree/main/tolaria
+image: ghcr.io/amiralbert/tolaria
+arch:
+  - amd64
+init: false
+ports:
+  3000/tcp: 3020
+  3001/tcp: 3021
+ports_description:
+  3000/tcp: Tolaria web UI (HTTP, for reverse proxies)
+  3001/tcp: Tolaria web UI (HTTPS)
+webui: "https://[HOST]:[PORT:3021]"
+map:
+  - type: app_config
+    read_only: false
+  - type: share
+    read_only: false
+  - type: ssl
+options:
+  username: admin
+  password: ""
+schema:
+  username: str?
+  password: password?

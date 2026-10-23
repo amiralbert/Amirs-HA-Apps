@@ -1,6 +1,6 @@
 # Amirs Home Assistant Apps
 
-Dieses Repository enthält fünf Home Assistant Apps (früher Add-ons):
+Dieses Repository enthält sechs Home Assistant Apps (früher Add-ons):
 
 | App | Beschreibung |
 | --- | --- |
@@ -8,6 +8,7 @@ Dieses Repository enthält fünf Home Assistant Apps (früher Add-ons):
 | [OmniRoute](https://github.com/amiralbert/Amirs-HA-Apps/tree/main/omniroute) | KI-Router mit einem OpenAI-kompatiblen Endpunkt für viele Anbieter. |
 | [Hermes Agent](https://github.com/amiralbert/Amirs-HA-Apps/tree/main/hermes_agent) | KI-Agent mit Dashboard, Gateway, Git und persistenten Workspaces. |
 | [Obsidian](https://github.com/amiralbert/Amirs-HA-Apps/tree/main/obsidian) | Obsidian im Browser mit Vault unter `/share/obsidian` (experimentell). |
+| [Tolaria](https://github.com/amiralbert/Amirs-HA-Apps/tree/main/tolaria) | Tolaria-Wissensdatenbank im Browser mit Vault unter `/share/tolaria` (experimentell, nur amd64). |
 | [GitHub Sync](https://github.com/amiralbert/Amirs-HA-Apps/tree/main/github) | Synchronisiert GitHub-Repositories in `/share`. |
 
 Über den Button kannst du dieses Repository direkt zum Home Assistant App

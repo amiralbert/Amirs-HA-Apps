@@ -13,12 +13,14 @@ Custom Home Assistant apps (formerly known as add-ons), structured after the
 | [OmniRoute](./omniroute) | Unified AI router with one OpenAI-compatible endpoint for many providers. |
 | [Hermes Agent](./hermes_agent) | AI agent with dashboard, gateway, Git and persistent workspaces. |
 | [Obsidian](./obsidian) | Obsidian in your browser with a vault in `/share/obsidian` (experimental). |
+| [Tolaria](./tolaria) | Tolaria Markdown knowledge base in your browser with a vault in `/share/tolaria` (experimental, amd64 only). |
 | [GitHub Sync](./github) | Synchronizes GitHub repositories in `/share`. |
 
 ## How the apps fit together
 
 ```
 GitHub Sync ──► /share/obsidian  ◄── Obsidian (edit your vault)
+            ──► /share/tolaria   ◄── Tolaria (edit your vault)
             ──► /share/hermes/*  ◄── Hermes Agent (workspaces)
                                        │ OpenAI-compatible API
                                        ▼
