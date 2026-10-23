@@ -8,8 +8,6 @@ arch:
   - aarch64
   - amd64
 init: false
-startup: application
-boot: auto
 map:
   - type: share
     read_only: false

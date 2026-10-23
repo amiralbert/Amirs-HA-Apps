@@ -25,6 +25,10 @@ RUN chmod a+x /etc/s6-overlay/s6-rc.d/freellmapi/run /etc/s6-overlay/s6-rc.d/fre
 
 WORKDIR /app
 
+# Replaces the obsolete app watchdog
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+    CMD ["node", "-e", "fetch('http://127.0.0.1:3001/api/ping').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]
+
 LABEL \
     io.hass.type="app" \
     org.opencontainers.image.title="Home Assistant App: FreeLLMAPI" \
