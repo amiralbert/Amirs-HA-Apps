@@ -1,0 +1,29 @@
+name: OmniRoute
+version: "0.1.0"
+slug: omniroute
+description: Unified AI router with one OpenAI-compatible endpoint for many LLM providers
+url: https://github.com/amiralbert/Amirs-HA-Apps/tree/main/omniroute
+image: ghcr.io/amiralbert/omniroute
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: services
+boot: auto
+ports:
+  20128/tcp: 20128
+ports_description:
+  20128/tcp: Dashboard and OpenAI-compatible API (/v1)
+webui: "http://[HOST]:[PORT:20128]"
+watchdog: "http://[HOST]:[PORT:20128]/healthz"
+options:
+  initial_password: ""
+  require_api_key: true
+  memory_mb: 1024
+  env_vars: []
+schema:
+  initial_password: password?
+  require_api_key: bool
+  memory_mb: int(512,16384)
+  env_vars:
+    - str

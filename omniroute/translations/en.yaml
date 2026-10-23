@@ -1,0 +1,17 @@
+configuration:
+  initial_password:
+    name: Initial password
+    description: >-
+      Dashboard password used until one is saved. Leave empty to set it in
+      the onboarding wizard on first visit.
+  require_api_key:
+    name: Require API key
+    description: Only accept /v1 requests with an OmniRoute API key.
+  memory_mb:
+    name: Memory (MB)
+    description: Node.js heap limit. Coding agents need considerably more.
+  env_vars:
+    name: Extra environment variables
+    description: Additional OmniRoute settings as KEY=value entries.
+network:
+  20128/tcp: Dashboard and OpenAI-compatible API (/v1)

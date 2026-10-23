@@ -10,6 +10,7 @@ Custom Home Assistant apps (formerly known as add-ons), structured after the
 | App | Description |
 | --- | --- |
 | [FreeLLMAPI](./freellmapi) | Local OpenAI-compatible gateway for multiple LLM providers. |
+| [OmniRoute](./omniroute) | Unified AI router with one OpenAI-compatible endpoint for many providers. |
 | [Hermes Agent](./hermes_agent) | AI agent with dashboard, gateway, Git and persistent workspaces. |
 | [Obsidian](./obsidian) | Obsidian in your browser with a vault in `/share/obsidian` (experimental). |
 | [GitHub Sync](./github) | Synchronizes GitHub repositories in `/share`. |
@@ -21,11 +22,11 @@ GitHub Sync ──► /share/obsidian  ◄── Obsidian (edit your vault)
             ──► /share/hermes/*  ◄── Hermes Agent (workspaces)
                                        │ OpenAI-compatible API
                                        ▼
-                                   FreeLLMAPI
+                             FreeLLMAPI or OmniRoute
 ```
 
 All apps exchange files via `/share`. Hermes Agent can connect to FreeLLMAPI
-over HTTP; see the individual app documentation for details.
+or OmniRoute over HTTP; see the individual app documentation for details.
 
 ## Installation
 
