@@ -1,0 +1,10 @@
+configuration:
+  username:
+    name: Username
+    description: Basic-auth user name for the web UI.
+  password:
+    name: Password
+    description: Basic-auth password for the web UI.
+network:
+  3000/tcp: Tolaria web UI (HTTP, for reverse proxies)
+  3001/tcp: Tolaria web UI (HTTPS)

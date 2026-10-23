@@ -1,0 +1,10 @@
+configuration:
+  username:
+    name: Benutzername
+    description: Basic-Auth-Benutzername für die Weboberfläche.
+  password:
+    name: Passwort
+    description: Basic-Auth-Passwort für die Weboberfläche.
+network:
+  3000/tcp: Tolaria-Weboberfläche (HTTP, für Reverse-Proxys)
+  3001/tcp: Tolaria-Weboberfläche (HTTPS)
