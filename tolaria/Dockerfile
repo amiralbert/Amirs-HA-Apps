@@ -55,8 +55,10 @@ RUN set -e; \
     npm install -g "pnpm@${PNPM_VERSION}"; \
     curl -fsSL -o /tmp/rustup-init "https://static.rust-lang.org/rustup/dist/${RUST_TARGET}/rustup-init"; \
     chmod +x /tmp/rustup-init; \
+    export CARGO_HOME=/usr/local/cargo RUSTUP_HOME=/usr/local/rustup; \
     /tmp/rustup-init -y --profile minimal --no-modify-path; \
-    export PATH="/root/.cargo/bin:${PATH}"; \
+    export PATH="${CARGO_HOME}/bin:${PATH}"; \
+    cargo --version; \
     git clone --depth 1 --branch "${TAG}" https://github.com/refactoringhq/tolaria.git /src; \
     cd /src; \
     jq --arg v "${TOLARIA_VERSION}" '.version = $v' src-tauri/tauri.conf.json > /tmp/tauri.conf.json; \
