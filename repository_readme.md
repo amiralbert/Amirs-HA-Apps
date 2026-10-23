@@ -1,10 +1,11 @@
 # Amirs Home Assistant Apps
 
-Dieses Repository enthält vier Home Assistant Apps (früher Add-ons):
+Dieses Repository enthält fünf Home Assistant Apps (früher Add-ons):
 
 | App | Beschreibung |
 | --- | --- |
 | [FreeLLMAPI](https://github.com/amiralbert/Amirs-HA-Apps/tree/main/freellmapi) | Lokales OpenAI-kompatibles Gateway für mehrere LLM-Anbieter. |
+| [OmniRoute](https://github.com/amiralbert/Amirs-HA-Apps/tree/main/omniroute) | KI-Router mit einem OpenAI-kompatiblen Endpunkt für viele Anbieter. |
 | [Hermes Agent](https://github.com/amiralbert/Amirs-HA-Apps/tree/main/hermes_agent) | KI-Agent mit Dashboard, Gateway, Git und persistenten Workspaces. |
 | [Obsidian](https://github.com/amiralbert/Amirs-HA-Apps/tree/main/obsidian) | Obsidian im Browser mit Vault unter `/share/obsidian` (experimentell). |
 | [GitHub Sync](https://github.com/amiralbert/Amirs-HA-Apps/tree/main/github) | Synchronisiert GitHub-Repositories in `/share`. |

@@ -1,5 +1,5 @@
 name: FreeLLMAPI
-version: "0.1.6"
+version: "0.1.7"
 slug: freellmapi
 description: Local OpenAI-compatible gateway that stacks the free tiers of many LLM providers
 url: https://github.com/amiralbert/Amirs-HA-Apps/tree/main/freellmapi
@@ -9,13 +9,11 @@ arch:
   - amd64
 init: false
 startup: services
-boot: auto
 ports:
   3001/tcp: 3001
 ports_description:
   3001/tcp: Dashboard and OpenAI-compatible API (/v1)
 webui: "http://[HOST]:[PORT:3001]"
-watchdog: "http://[HOST]:[PORT:3001]/api/ping"
 options:
   encryption_key: ""
   response_cache: false

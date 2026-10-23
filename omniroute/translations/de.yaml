@@ -1,0 +1,17 @@
+configuration:
+  initial_password:
+    name: Anfangspasswort
+    description: >-
+      Dashboard-Passwort, bis eines gespeichert ist. Leer lassen, um es beim
+      ersten Aufruf im Einrichtungsassistenten festzulegen.
+  require_api_key:
+    name: API-Schlüssel erforderlich
+    description: Nur /v1-Anfragen mit einem OmniRoute-API-Schlüssel annehmen.
+  memory_mb:
+    name: Speicher (MB)
+    description: Heap-Limit für Node.js. Coding-Agents brauchen deutlich mehr.
+  env_vars:
+    name: Zusätzliche Umgebungsvariablen
+    description: Weitere OmniRoute-Einstellungen als KEY=value-Einträge.
+network:
+  20128/tcp: Dashboard und OpenAI-kompatible API (/v1)
