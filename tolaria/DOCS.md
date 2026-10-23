@@ -31,8 +31,9 @@ Do not let both push to the same repository at the same time.
 
 ## Known limitations
 
-- Upstream only publishes a Linux build for `amd64`, so the app does not run on
-  `aarch64` hosts such as a Raspberry Pi.
+- Upstream only publishes Linux builds for `amd64`. On `aarch64` hosts such as
+  a Raspberry Pi, the app runs Tolaria built from the same release's source
+  code, without upstream crash reporting.
 - Tolaria is a desktop app streamed to the browser: expect higher CPU and memory
   use than for a pure web service.
 - The upstream base image is designed for `docker run` with `--shm-size`. Home
