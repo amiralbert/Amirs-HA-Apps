@@ -16,6 +16,9 @@ WORKDIR /app
 ENTRYPOINT ["/run.sh"]
 CMD []
 
+# The upstream image's HEALTHCHECK (node healthcheck.mjs, probing /healthz on
+# the dashboard port) is inherited and replaces the obsolete app watchdog.
+
 LABEL \
     io.hass.type="app" \
     org.opencontainers.image.title="Home Assistant App: OmniRoute" \

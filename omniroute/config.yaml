@@ -9,13 +9,11 @@ arch:
   - amd64
 init: false
 startup: services
-boot: auto
 ports:
   20128/tcp: 20128
 ports_description:
   20128/tcp: Dashboard and OpenAI-compatible API (/v1)
 webui: "http://[HOST]:[PORT:20128]"
-watchdog: "http://[HOST]:[PORT:20128]/healthz"
 options:
   initial_password: ""
   require_api_key: true
