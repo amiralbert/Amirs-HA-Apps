@@ -1,11 +1,12 @@
 name: Tolaria
-version: "0.1.0"
+version: "0.2.0"
 slug: tolaria
 stage: experimental
 description: Tolaria Markdown knowledge base in your browser, vault stored in /share/tolaria
 url: https://github.com/amiralbert/Amirs-HA-Apps/tree/main/tolaria
 image: ghcr.io/amiralbert/tolaria
 arch:
+  - aarch64
   - amd64
 init: false
 ports:
